@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const BUILD_DIR = path.resolve(__dirname, 'public');
 const APP_DIR = path.resolve(__dirname, 'src');
@@ -10,6 +11,10 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   inject: 'body'
 });
 
+const extractSass = new ExtractTextPlugin({
+  filename: 'styles.css'
+});
+
 module.exports = {
   entry: APP_DIR + '/index.js',
   output: {
@@ -18,9 +23,34 @@ module.exports = {
     sourceMapFilename: '[name].map'
   },
   plugins: [
-    HtmlWebpackPluginConfig
+    HtmlWebpackPluginConfig,
+    extractSass
   ],
   module: {
+    rules: [
+      {
+        test: /\.(js)$/,
+        loader: 'babel-loader',
+        include: APP_DIR,
+        exclude: /node_modules/
+      },
+      {
+        test: /\.(s*)css$/,
+        use: extractSass.extract({
+          use: [
+            {
+              loader: 'css-loader'
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                includePaths: [APP_DIR, ASSETS_DIR]
+              }
+            }
+          ]
+        })
+      }
+    ],
     loaders: [
       {
         test: /\.(png|jpg|gif|svg|ico)$/,
