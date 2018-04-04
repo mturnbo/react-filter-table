@@ -11,7 +11,7 @@ const DataTable = ({columns, data}) => {
 
   return (
       <div>
-        <table>
+        <table className="data-table">
           <thead>
           {getColumnHeaderss(columns)}
           </thead>
