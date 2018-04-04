@@ -1,3 +1,15 @@
 {
-  "extends": "airbnb"
+  "extends": "airbnb",
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "rules": {
+    "max-len": ["error", {"code": 120}],
+    "arrow-parens": 0,
+    "comma-dangle": 0,
+    "react/prefer-stateless-function": 0,
+    "prefer-template": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+  }
 }

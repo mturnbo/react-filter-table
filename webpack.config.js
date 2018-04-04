@@ -6,7 +6,7 @@ const BUILD_DIR = path.resolve(__dirname, 'public');
 const APP_DIR = path.resolve(__dirname, 'src');
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: APP_DIR + '/index.js',
+  template: APP_DIR + '/index.html',
   filename: 'index.html',
   inject: 'body'
 });
@@ -16,7 +16,7 @@ const extractSass = new ExtractTextPlugin({
 });
 
 module.exports = {
-  entry: APP_DIR + '/index.js',
+  entry: APP_DIR + '/index.jsx',
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js',
@@ -29,7 +29,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js)$/,
+        test: /\.(js|jsx)$/,
         loader: 'babel-loader',
         include: APP_DIR,
         exclude: /node_modules/
@@ -44,7 +44,7 @@ module.exports = {
             {
               loader: 'sass-loader',
               options: {
-                includePaths: [APP_DIR, ASSETS_DIR]
+                includePaths: [APP_DIR]
               }
             }
           ]
@@ -65,6 +65,6 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.json']
+    extensions: ['.js', '.jsx', '.json']
   }
 };
