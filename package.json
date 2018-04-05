@@ -1,6 +1,6 @@
 {
   "name": "react-filter-table",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React table component for filtering data",
   "author": "Marcus E. Turnbo <marcus@emarcus.com>",
   "license": "MIT",
@@ -10,6 +10,7 @@
   },
   "main": "index.js",
   "devDependencies": {
+    "@storybook/react": "^3.4.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -38,6 +39,7 @@
   "scripts": {
     "build": "webpack",
     "start": "webpack-dev-server",
-    "lint": "eslint --cache --ignore-path .gitignore --ext .jsx,.js ."
+    "lint": "eslint --cache --ignore-path .gitignore --ext .jsx,.js .",
+    "storybook": "start-storybook -p 9091 -c .storybook"
   }
 }
