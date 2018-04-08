@@ -1,5 +1,8 @@
 # React Filter Table
 
+#### v.0.1.4
+* *Feature*: Added Filter Container
+
 #### v.0.1.3
 * *Feature*: Added Filter Indicator component
 

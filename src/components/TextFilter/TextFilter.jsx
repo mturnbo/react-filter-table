@@ -5,15 +5,16 @@ import './TextFilter.scss';
 const TextFilter = props => {
   return (
     <form onSubmit={props.handleSubmit}>
-      <label for={props.id}>{props.label}</label>
-      <input type="text" id={props.id} />
+      <input type="hidden" id="field" value={props.field} />
+      <label htmlFor="filter">{props.label}</label>
+      <input type="text" id="filter" />
       <button type="submit"> Add Filter </button>
     </form>
   );
 };
 
 TextFilter.propTypes = {
-  id: PropTypes.string.isRequired,
+  field: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired
 };
