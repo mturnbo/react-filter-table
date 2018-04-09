@@ -4,7 +4,7 @@ import TextFilter from '../../components/TextFilter';
 import CheckFilter from '../../components/CheckFilter';
 import FilterIndicator from '../../components/FilterIndicator';
 import DataTable from '../../components/DataTable';
-import data from '../../../data/persons.json';
+import data from '../../../data/persons_test.json';
 
 class FilterContainer extends React.Component {
   constructor(props) {
@@ -22,6 +22,23 @@ class FilterContainer extends React.Component {
     const filters = this.state.filters;
     this.setState({
       filters: [...this.state.filters, {field: e .target.field.value, value: e.target.filter.value}]
+    });
+    this.filterData();
+  }
+
+  removeFilter(filter) {
+
+  }
+
+  filterData() {
+    const filteredData = this.state.originalData.filter(row => {
+      let match = true;
+      this.state.filters.forEach(filter => match = row[filter.field] === filter.value);
+      return match;
+    });
+
+    this.setState({
+      filteredData: filteredData
     });
   }
 

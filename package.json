@@ -1,6 +1,6 @@
 {
   "name": "react-filter-table",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "description": "React table component for filtering data",
   "author": "Marcus E. Turnbo <marcus@emarcus.com>",
   "license": "MIT",

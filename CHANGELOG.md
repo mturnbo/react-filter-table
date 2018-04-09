@@ -1,5 +1,11 @@
 # React Filter Table
 
+#### v.0.1.6
+* *Feature*: Added data filter
+
+#### v.0.1.5
+* *Feature*: Added filter indicators
+
 #### v.0.1.4
 * *Feature*: Added Filter Container
 
