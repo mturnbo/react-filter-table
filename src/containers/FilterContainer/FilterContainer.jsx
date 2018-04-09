@@ -4,17 +4,20 @@ import TextFilter from '../../components/TextFilter';
 import CheckFilter from '../../components/CheckFilter';
 import FilterIndicator from '../../components/FilterIndicator';
 import DataTable from '../../components/DataTable';
-import data from '../../../data/persons_test.json';
+import data from '../../../data/persons.json';
 
 class FilterContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       columns: Object.keys(data[0]),
-      originalData: data,
       filteredData: data,
       filters: []
     };
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state.filters !== nextState.filters;
   }
 
   handleFilterSubmit(e) {
@@ -31,7 +34,7 @@ class FilterContainer extends React.Component {
   }
 
   filterData() {
-    const filteredData = this.state.originalData.filter(row => {
+    const filteredData = data.filter(row => {
       let match = true;
       this.state.filters.forEach(filter => match = row[filter.field] === filter.value);
       return match;
