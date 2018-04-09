@@ -57,10 +57,10 @@ class FilterContainer extends React.Component {
   }
 
   render() {
-    const selectedFilters = Object.keys(this.state.filters).map((filter) => {
-      this.state.filters[filter].map((val, index) => {
-        <FilterIndicator key={index} field={filter}  value={val} removeFilterHandler={e => this.removeFilter(e)} />
-      })
+    const selectedFilters = Object.keys(this.state.filters).map((filter, index) => {
+      return (
+        <FilterIndicator key={index} field={filter}  value={this.state.filters[filter].toString()} removeFilterHandler={e => this.removeFilter(e)} />
+      );
     });
 
     return (
@@ -73,7 +73,7 @@ class FilterContainer extends React.Component {
           <CheckFilter field="gender" value="Male" label="Male" handleSubmit={e => this.handleFilterSubmit(e)} />
           <CheckFilter field="gender" value="Female" label="Female" handleSubmit={e => this.handleFilterSubmit(e)} />
         </div>
-        <div>
+        <div className="selected-filter-container">
           {selectedFilters}
         </div>
         <hr />

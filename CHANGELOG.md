@@ -1,5 +1,8 @@
 # React Filter Table
 
+#### v.0.1.9
+* *Fix*: Updated filter indicator display
+
 #### v.0.1.8
 * *Feature*: Changed filters to object with array for each field id
 
