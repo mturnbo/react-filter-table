@@ -1,6 +1,6 @@
 {
   "name": "react-filter-table",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "React table component for filtering data",
   "author": "Marcus E. Turnbo <marcus@emarcus.com>",
   "license": "MIT",
@@ -32,6 +32,7 @@
     "webpack-dev-server": "^2.7.1"
   },
   "dependencies": {
+    "lodash": "^4.17.5",
     "prop-types": "^15.6.1",
     "react": "^16.3.1",
     "react-dom": "^16.3.1"
