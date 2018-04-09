@@ -4,7 +4,7 @@ import TextFilter from '../../components/TextFilter';
 import CheckFilter from '../../components/CheckFilter';
 import FilterIndicator from '../../components/FilterIndicator';
 import DataTable from '../../components/DataTable';
-import data from '../../../data/persons.json';
+import data from '../../../data/persons_test.json';
 
 class FilterContainer extends React.Component {
   constructor(props) {
@@ -34,10 +34,14 @@ class FilterContainer extends React.Component {
   }
 
   filterData() {
+    console.table(this.state.filters);
+
     const filteredData = data.filter(row => {
-      let match = true;
-      this.state.filters.forEach(filter => match = row[filter.field] === filter.value);
-      return match;
+      let rowMatch = [];
+      this.state.filters.forEach(filter => {
+        rowMatch.push(row[filter.field] === filter.value);
+      });
+      return rowMatch.every(v => v === true);
     });
 
     this.setState({
@@ -46,8 +50,8 @@ class FilterContainer extends React.Component {
   }
 
   render() {
-    const selectedFilters = this.state.filters.map(filter =>
-      <FilterIndicator label={filter.field} removeFilterHandler={e => this.removeFilter(e)} />
+    const selectedFilters = this.state.filters.map((filter, index) =>
+      <FilterIndicator key={index} field={filter.field}  value={filter.value} removeFilterHandler={e => this.removeFilter(e)} />
     );
 
     return (

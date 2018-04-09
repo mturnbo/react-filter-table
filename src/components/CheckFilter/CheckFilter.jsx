@@ -4,7 +4,7 @@ import './CheckFilter.scss';
 
 const TextFilter = props => {
   return (
-    <form onSubmit={props.handleSubmit}>
+    <form className="check-filter" onSubmit={props.handleSubmit}>
       <input type="hidden" id="field" value={props.field} />
       <input type="checkbox" id="filter" value={props.value} />
       <label htmlFor="filter">{props.label}</label>

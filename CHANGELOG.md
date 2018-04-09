@@ -1,5 +1,11 @@
 # React Filter Table
 
+#### v.0.1.7
+* *Fix*: Updated filter method to correctly return matching data rows
+* *Feature*: Updated filter indicator to show field and value with data attributes on link
+* *Feature*: Added indexes to mapped arrays
+* *Feature*: Added some styling to filters
+
 #### v.0.1.6
 * *Feature*: Added data filter
 

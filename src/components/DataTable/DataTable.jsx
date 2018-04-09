@@ -6,7 +6,7 @@ const DataTable = ({columns, data}) => {
   const getColumnHeaderss = cols => <tr>{cols.map((col, index) => <th key={index}>{col}</th>)}</tr>;
 
   const getRows = data => {
-    return data.map(row => <tr>{Object.keys(row).map(col => <td>{row[col]}</td>)}</tr>);
+    return data.map((row, index) => <tr key={index}>{Object.keys(row).map((col,index) => <td key={index}>{row[col]}</td>)}</tr>);
   };
 
   return (

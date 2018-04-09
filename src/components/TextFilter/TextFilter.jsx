@@ -4,7 +4,7 @@ import './TextFilter.scss';
 
 const TextFilter = props => {
   return (
-    <form onSubmit={props.handleSubmit}>
+    <form className="text-filter" onSubmit={props.handleSubmit}>
       <input type="hidden" id="field" value={props.field} />
       <label htmlFor="filter">{props.label}</label>
       <input type="text" id="filter" />
