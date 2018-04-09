@@ -1,10 +1,11 @@
 import React from 'react';
+import {union as _union} from 'lodash';
 import './FilterContainer.scss';
 import TextFilter from '../../components/TextFilter';
 import CheckFilter from '../../components/CheckFilter';
 import FilterIndicator from '../../components/FilterIndicator';
 import DataTable from '../../components/DataTable';
-import data from '../../../data/persons_test.json';
+import data from '../../../data/persons.json';
 
 class FilterContainer extends React.Component {
   constructor(props) {
@@ -12,25 +13,33 @@ class FilterContainer extends React.Component {
     this.state = {
       columns: Object.keys(data[0]),
       filteredData: data,
-      filters: []
+      filters: {}
     };
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return this.state.filters !== nextState.filters;
+    return this.state.filteredData !== nextState.filteredData;
+  }
+
+  addFilter(filter) {
+    let filters = this.state.filters;
+    filters[filter.field] = filters[filter.field] ? _union(filters[filter.field], [filter.value]) : [filter.value];
+    this.setState({filters: filters});
+  }
+
+  removeFilter(filter) {
+    let filters = this.state.filters;
+    if (filters[filter.field]) {
+      filters.splice(filters.indexOf(filter.value));
+      this.setState({filters: filters});
+    }
   }
 
   handleFilterSubmit(e) {
     e.preventDefault();
-    const filters = this.state.filters;
-    this.setState({
-      filters: [...this.state.filters, {field: e .target.field.value, value: e.target.filter.value}]
-    });
+    const filter = {field: e .target.field.value, value: e.target.filter.value};
+    this.addFilter(filter);
     this.filterData();
-  }
-
-  removeFilter(filter) {
-
   }
 
   filterData() {
@@ -38,21 +47,21 @@ class FilterContainer extends React.Component {
 
     const filteredData = data.filter(row => {
       let rowMatch = [];
-      this.state.filters.forEach(filter => {
-        rowMatch.push(row[filter.field] === filter.value);
+      Object.keys(this.state.filters).forEach(filterName => {
+        rowMatch.push(this.state.filters[filterName].includes(row[filterName] ));
       });
       return rowMatch.every(v => v === true);
     });
 
-    this.setState({
-      filteredData: filteredData
-    });
+    this.setState({filteredData: filteredData});
   }
 
   render() {
-    const selectedFilters = this.state.filters.map((filter, index) =>
-      <FilterIndicator key={index} field={filter.field}  value={filter.value} removeFilterHandler={e => this.removeFilter(e)} />
-    );
+    const selectedFilters = Object.keys(this.state.filters).map((filter, index) => {
+      return (
+        <FilterIndicator key={index} field={filter}  value={this.state.filters[filter].toString()} removeFilterHandler={e => this.removeFilter(e)} />
+      );
+    });
 
     return (
       <div className="app-container">
@@ -64,7 +73,7 @@ class FilterContainer extends React.Component {
           <CheckFilter field="gender" value="Male" label="Male" handleSubmit={e => this.handleFilterSubmit(e)} />
           <CheckFilter field="gender" value="Female" label="Female" handleSubmit={e => this.handleFilterSubmit(e)} />
         </div>
-        <div>
+        <div className="selected-filter-container">
           {selectedFilters}
         </div>
         <hr />

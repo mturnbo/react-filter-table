@@ -1,5 +1,11 @@
 # React Filter Table
 
+#### v.0.1.9
+* *Fix*: Updated filter indicator display
+
+#### v.0.1.8
+* *Feature*: Changed filters to object with array for each field id
+
 #### v.0.1.7
 * *Fix*: Updated filter method to correctly return matching data rows
 * *Feature*: Updated filter indicator to show field and value with data attributes on link
