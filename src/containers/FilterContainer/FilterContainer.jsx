@@ -27,17 +27,19 @@ class FilterContainer extends React.Component {
     this.setState({filters: filters});
   }
 
-  removeFilter(filter) {
+  removeFilter(e) {
+    const filter = Object.assign({}, e.target.dataset);
     let filters = this.state.filters;
     if (filters[filter.field]) {
-      filters.splice(filters.indexOf(filter.value));
+      delete filters[filter.field];
       this.setState({filters: filters});
+      this.filterData();
     }
   }
 
   handleFilterSubmit(e) {
     e.preventDefault();
-    const filter = {field: e .target.field.value, value: e.target.filter.value};
+    const filter = {field: e.target.field.value, value: e.target.filter.value};
     this.addFilter(filter);
     this.filterData();
   }

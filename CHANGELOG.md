@@ -2,6 +2,7 @@
 
 #### v.0.1.9
 * *Fix*: Updated filter indicator display
+* *Fix*: Got remove filter working
 
 #### v.0.1.8
 * *Feature*: Changed filters to object with array for each field id
